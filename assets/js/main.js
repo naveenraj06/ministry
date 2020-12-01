@@ -29,20 +29,9 @@ $(function(){
     $('.hamburger').on('click', function(){
         $('.menu-list_wrapper').toggleClass('active').fadeToggle('slow');
     });
-    $('#contact-form').on('submit', function(e){
-        e.preventDefault();
-        var _this = $(this);
-        _this.find('input').each(function(){
-        var _val = $(this).val();
-        
-            if(_val=="" || _val==undefined ){
-                $('#error').show();
-                return false;
-            }else {
-                $('#error').hide();				
-            }
-        });
-		/*$.ajax({
+    /*$('#contact-form').on('submit', function(e){
+
+		$.ajax({
 				url: 'thanks.php',
 				method     : 'POST',
 				dataType   : 'json',
@@ -69,28 +58,43 @@ $(function(){
 					//unloading(); 
 					
 				}
-			});		*/
+			});		
+
+    });     */
       let testForm = document.querySelector("#contact_us form");
       
       testForm.addEventListener('submit', e => {
         e.preventDefault();
-
-        const formData = new FormData(testForm);
-        fetch(testForm.getAttribute('action'), {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-          },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(res => {
-          if (res) {
-            alert('thank you')
-          }
+        var _this = $(this),error;
+        _this.find('input').each(function(){
+        var _val = $(this).val();
+        
+            if(_val=="" || _val==undefined ){
+                $('#error').show();
+				error = true;
+                return false;
+            }else {
+				error = false;
+                $('#error').hide();				
+            }
         });
-      });
-    });     
+		if(!error) {
+			const formData = new FormData(testForm);
+			fetch(testForm.getAttribute('action'), {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+			},
+			body: new URLSearchParams(formData).toString()
+			})
+			.then(res => {
+			if (res) {
+				alert('thank you')
+			}
+			});			
+		}
+      });	
     $('#contact-form input').on('blur', function(e){
             var _val = $(this).val();
             if(_val==""){
