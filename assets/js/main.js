@@ -38,8 +38,36 @@ $(function(){
             if(_val=="" || _val==undefined ){
                 $('#error').show();
                 return false;
-            } else {
+            }else {
                 $('#error').hide();
+$.ajax({
+				url: 'thanks.php',
+				method     : 'POST',
+				dataType   : 'json',
+				data       : $('#contact-form').serialize(),
+				beforeSend: function() {
+					//loading();
+				},
+				success: function(response){ 
+					 
+					
+					if(response.rslt == 1){
+						//swal("Success!","Your enquiry send successfully", "success");
+						$('#error').text('Your request has been submitted successfully!')
+ 
+setTimeout(function(){location.reload();}, 3000);						
+						//$(jvalidate)[0].reset();
+						//location.reload();
+						//alert("http://www.athreyablouses.com/thanks");
+						//window.location.href = "http://www.athreyablouses.com/contact_us";
+					}
+					else{
+						swal("Failure!", "error", "warning");
+					}		
+					//unloading(); 
+					
+				}
+			});				
             }
         });
     });     
