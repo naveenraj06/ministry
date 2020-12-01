@@ -90,7 +90,8 @@ $(function(){
 			})
 			.then(res => {
 			if (res) {
-				alert('thank you')
+				alert('தொடர்பு கொண்டமைக்கு நன்றி!')
+				window.location.reload()
 			}
 			});			
 		}
