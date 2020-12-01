@@ -39,8 +39,10 @@ $(function(){
                 $('#error').show();
                 return false;
             }else {
-                $('#error').hide();
-$.ajax({
+                $('#error').hide();				
+            }
+        });
+		$.ajax({
 				url: 'thanks.php',
 				method     : 'POST',
 				dataType   : 'json',
@@ -55,21 +57,19 @@ $.ajax({
 						//swal("Success!","Your enquiry send successfully", "success");
 						$('#error').text('Your request has been submitted successfully!')
  
-setTimeout(function(){location.reload();}, 3000);						
+						setTimeout(function(){location.reload();}, 3000);						
 						//$(jvalidate)[0].reset();
 						//location.reload();
 						//alert("http://www.athreyablouses.com/thanks");
 						//window.location.href = "http://www.athreyablouses.com/contact_us";
 					}
 					else{
-						swal("Failure!", "error", "warning");
+						alert("Failure!");
 					}		
 					//unloading(); 
 					
 				}
-			});				
-            }
-        });
+			});		
     });     
     $('#contact-form input').on('blur', function(e){
             var _val = $(this).val();
