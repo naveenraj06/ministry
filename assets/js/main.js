@@ -72,7 +72,7 @@ $(function(){
 			});		*/
 			$.post($(this).attr('action'),$('#contact-form').serialize()).then(data => {
 					alert('thank you');
-			))
+			})
     });     
     $('#contact-form input').on('blur', function(e){
             var _val = $(this).val();
