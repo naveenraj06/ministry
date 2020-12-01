@@ -70,9 +70,26 @@ $(function(){
 					
 				}
 			});		*/
-			$.post($(this).attr('action'),$('#contact-form').serialize()).then(data => {
-					alert('thank you');
-			})
+      let testForm = document.querySelector("#contact_us form");
+      
+      testForm.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const formData = new FormData(testForm);
+        fetch(testForm.getAttribute('action'), {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(res => {
+          if (res) {
+            alert('thank you')
+          }
+        });
+      });
     });     
     $('#contact-form input').on('blur', function(e){
             var _val = $(this).val();
