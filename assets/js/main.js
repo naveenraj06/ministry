@@ -42,7 +42,7 @@ $(function(){
                 $('#error').hide();				
             }
         });
-		$.ajax({
+		/*$.ajax({
 				url: 'thanks.php',
 				method     : 'POST',
 				dataType   : 'json',
@@ -69,7 +69,10 @@ $(function(){
 					//unloading(); 
 					
 				}
-			});		
+			});		*/
+			$.post($(this).attr('action'),$('#contact-form').serialize()).then(data => {
+					alert('thank you');
+			))
     });     
     $('#contact-form input').on('blur', function(e){
             var _val = $(this).val();
